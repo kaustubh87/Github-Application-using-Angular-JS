@@ -1,11 +1,14 @@
 <!DOCTYPE>
-<html ng-app>
+<html ng-app="github-viewer">
 <head>
     <title>Github Application</title>
 </head>
-<body>
-    {{4+5}}
+<body ng-controller= "MainController">
+   
+    {{message}}
+    <p>Hi I am {{person.firstName}}</p>
     <script src="../bower_components/angular/angular.js"></script>
-    <script src="script.js"></script>
+    <!--<script src="script.js"></script>-->
+    <script src="./controllers/MainController.js"></script>
 </body>
 </html>
