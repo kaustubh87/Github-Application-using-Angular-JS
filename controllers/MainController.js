@@ -1,13 +1,11 @@
 var app = angular.module('github-viewer', []);
 
-app.controller("MainController", function($scope){
-        $scope.message = "Hello World";
+app.controller("MainController", function($scope, $http){
 
-        var person = {
-            firstName : "Kvin",
-            lastName: "Vin",
-            imageUrl: "http://www.kvin.com/2131.jpg"
-        };
+        $http.get('https://api.github.com/users/kaustubh87')
+                .then(function(response){
+                     $scope.user = response.data;   
+                });
 
-        $scope.person = person;
+        
 });
