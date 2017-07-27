@@ -5,8 +5,9 @@
     <title>Github Application</title>
 </head>
 <h2>Github Viewer Application</h2>
+
 <body ng-controller="MainController">
-    
+
     <div>
         {{error}}
     </div>
@@ -16,41 +17,40 @@
         <input type="submit" value="Search">
     </form>
 
-    <div ng-show="user">
-    Name:- {{user.name}}
-    <div>
-        Location:- {{user.location}}
-    </div>
-    Order:
-    <select ng-model="sortOrder">
-        <option value="+name">Name</option>
+    <div id="userDetails" ng-show="user">
+        <h2>Name:- {{user.name}}</h2>
+        <div>
+            Location:- {{user.location}}
+        </div>
+        Order:
+        <select ng-model="sortOrder">
+        <option value="+name" selected >Name</option>
         <option value="-language">Language</option>
     </select>
-</div>
+    </div>
 
-<div ng-show="user">
-    <h2>Repos</h2>
-    <table>
-        <thead>
-            <th style="text-align:left;">Name</th>
-            <th>Repo Url</th>
-            <th>Language</th>
-        </thead>
-        <tbody>
-            <tr ng-repeat="repo in repos | orderBy: sortOrder ">
-                <td>{{repo.name}}</td>
-                <td>{{repo.html_url}}</td>
-                <td>{{repo.language}}</td>
-            </tr>
-        </tbody>
-    </table>
-</div>
-    
-   
+    <div ng-show="user">
+        <h2>Repos</h2>
+        <table>
+            <thead>
+                <th style="text-align:left;">Name</th>
+                <th>Repo Url</th>
+                <th>Language</th>
+            </thead>
+            <tbody>
+                <tr ng-repeat="repo in repos | orderBy: sortOrder ">
+                    <td>{{repo.name}}</td>
+                    <td><a ng-href="{{repo.html_url}}" target="_blank">{{repo.html_url}}</a></td>
+                    <td>{{repo.language}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
     <script src="../bower_components/angular/angular.js"></script>
     <!--<script src="script.js"></script>-->
     <script src="./controllers/MainController.js"></script>
+    <script src="./controllers/github.js"></script>
 </body>
 
 </html>
