@@ -6,14 +6,17 @@
 </head>
 <h2>Github Viewer Application</h2>
 <body ng-controller="MainController">
+    
     <div>
         {{error}}
     </div>
+    {{ countdown }}
     <form name="searchUser" ng-submit="search()">
         <input type="search" required placeholder="username to find" ng-model="username" />
         <input type="submit" value="Search">
     </form>
-    <div>
+
+    <div ng-show="user">
     Name:- {{user.name}}
     <div>
         Location:- {{user.location}}
@@ -23,9 +26,9 @@
         <option value="+name">Name</option>
         <option value="-language">Language</option>
     </select>
-    </div>
-    
-    <div ng-hide="!user">
+</div>
+
+<div ng-show="user">
     <h2>Repos</h2>
     <table>
         <thead>
@@ -41,7 +44,10 @@
             </tr>
         </tbody>
     </table>
-    </div>
+</div>
+    
+   
+
     <script src="../bower_components/angular/angular.js"></script>
     <!--<script src="script.js"></script>-->
     <script src="./controllers/MainController.js"></script>
