@@ -1,24 +1,50 @@
 <!DOCTYPE>
 <html ng-app="github-viewer">
+
 <head>
     <title>Github Application</title>
 </head>
-<body ng-controller= "MainController">
+<h2>Github Viewer Application</h2>
+<body ng-controller="MainController">
     <div>
-    {{error}}
+        {{error}}
     </div>
-     <form name="searchUser" ng-submit="search()">
-       <input type="search" required placeholder="username to find" ng-model="username" />
-       <input type="submit" value="Search">
-  </form>
-   Name:- {{user.name}}
+    <form name="searchUser" ng-submit="search()">
+        <input type="search" required placeholder="username to find" ng-model="username" />
+        <input type="submit" value="Search">
+    </form>
     <div>
-    Location:- {{user.location}}
- </div>
- {{user}}
- 
+    Name:- {{user.name}}
+    <div>
+        Location:- {{user.location}}
+    </div>
+    Order:
+    <select ng-model="sortOrder">
+        <option value="+name">Name</option>
+        <option value="-language">Language</option>
+    </select>
+    </div>
+    
+    <div ng-hide="!user">
+    <h2>Repos</h2>
+    <table>
+        <thead>
+            <th style="text-align:left;">Name</th>
+            <th>Repo Url</th>
+            <th>Language</th>
+        </thead>
+        <tbody>
+            <tr ng-repeat="repo in repos | orderBy: sortOrder ">
+                <td>{{repo.name}}</td>
+                <td>{{repo.html_url}}</td>
+                <td>{{repo.language}}</td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
     <script src="../bower_components/angular/angular.js"></script>
     <!--<script src="script.js"></script>-->
     <script src="./controllers/MainController.js"></script>
 </body>
+
 </html>
